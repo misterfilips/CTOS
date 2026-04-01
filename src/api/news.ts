@@ -37,6 +37,6 @@ export async function fetchNews(): Promise<NewsArticle[]> {
 
   // Final fallback: hardcoded placeholder so the UI still shows
   return [
-    { title: 'Chicago news feed loading...', description: '', url: '#', image: '', publishedAt: new Date().toISOString(), source: { name: 'System', url: '' } },
+    { title: 'Live news feed available in full version', description: '', url: '#', image: '', publishedAt: new Date().toISOString(), source: { name: 'ctOS', url: '' } },
   ]
 }

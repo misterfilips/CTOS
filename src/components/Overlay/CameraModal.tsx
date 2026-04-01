@@ -62,20 +62,10 @@ export default function CameraModal() {
           </div>
         </div>
 
-        {/* Link to data portal */}
-        <a
-          href={isRedLight
-            ? 'https://data.cityofchicago.org/Transportation/Red-Light-Camera-Locations/thvf-6diy'
-            : 'https://data.cityofchicago.org/Transportation/Speed-Camera-Locations/4i42-qv3h'}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1.5 mt-3 py-2 rounded-md text-xs font-mono transition-all hover:brightness-125"
-          style={{ background: `${accentColor}15`, color: accentColor, border: `1px solid ${accentColor}30` }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          View on Chicago Data Portal
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
+        {/* Feed status */}
+        <div className="mt-3 pt-2 text-[10px] text-center" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', color: '#555', fontFamily: 'JetBrains Mono, monospace' }}>
+          Live feed not available in demo
+        </div>
       </div>
       {/* Click backdrop to close */}
       <div className="fixed inset-0 -z-10" onClick={close} />

@@ -94,7 +94,7 @@ export default function ActivityFeed() {
           )
         })}
         {!feed.length && (
-          <div className="text-xs text-center py-4" style={{ color: '#444', fontFamily: 'JetBrains Mono, monospace' }}>No data for this time range</div>
+          <div className="text-xs text-center py-4" style={{ color: '#444', fontFamily: 'JetBrains Mono, monospace' }}>No incidents in selected time range</div>
         )}
       </div>
     </div>

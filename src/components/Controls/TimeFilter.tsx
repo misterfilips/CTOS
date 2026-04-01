@@ -125,7 +125,7 @@ export default function TimeFilter() {
               ) : (
                 <>
                   <p className="text-xs mb-5" style={{ color: '#888', fontFamily: 'JetBrains Mono, monospace' }}>
-                    Predictive analytics and live monitoring require Level 2 clearance. Submit credentials for authorization.
+                    Predictive analytics and live monitoring are available in the full version. Submit your details to request access.
                   </p>
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
