@@ -118,7 +118,7 @@ export default function LayerToggle() {
             </div>
             <div style={{ padding: 15 }}>
               <p className="text-xs mb-5" style={{ color: '#888', fontFamily: 'JetBrains Mono, monospace' }}>
-                <span className="text-white">{clickedLayer}</span> requires authorized access. This layer is available in the full version for verified law enforcement and government personnel.
+Predictive analytics, live tracking, and sensitive data is only available for authorized personnel. If you are interested in bringing the ctOS system to your jurisdiction, contact us below.
               </p>
               <form onSubmit={(e) => { e.preventDefault(); setShowModal(false) }} className="space-y-4">
                 <div>

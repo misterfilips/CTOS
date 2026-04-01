@@ -125,7 +125,7 @@ export default function TimeFilter() {
               ) : (
                 <>
                   <p className="text-xs mb-5" style={{ color: '#888', fontFamily: 'JetBrains Mono, monospace' }}>
-                    Predictive analytics and live monitoring are available in the full version. Submit your details to request access.
+                    Predictive analytics, live tracking, and sensitive data is only available for authorized personnel. If you are interested in bringing the ctOS system to your jurisdiction, contact us below.
                   </p>
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
