@@ -16,18 +16,22 @@ export const MAP_CINEMATIC_START = {
   bearing: 0,
 } as const
 
-// Dark raster style using multiple fallback tile sources
+// CartoDB dark tiles — completely free, no API key, no domain restrictions
+const DARK_TILES = [
+  'https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+  'https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+  'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+]
+
 export const DARK_STYLE: StyleSpecification = {
   version: 8,
-  name: 'PULSE Dark',
+  name: 'ctOS Dark',
   sources: {
     'dark-tiles': {
       type: 'raster',
-      tiles: [
-        'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}@2x.png',
-      ],
+      tiles: DARK_TILES,
       tileSize: 256,
-      attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     },
   },
   layers: [
@@ -39,21 +43,18 @@ export const DARK_STYLE: StyleSpecification = {
       maxzoom: 20,
     },
   ],
-  glyphs: 'https://glfonts.lukasmartinelli.ch/fonts/{fontstack}/{range}.pbf',
+  glyphs: 'https://fonts.openmaptiles.org/{fontstack}/{range}.pbf',
 }
 
-// 3D buildings style using OpenFreeMap vector tiles (completely free, no key)
 export const DARK_STYLE_3D: StyleSpecification = {
   version: 8,
-  name: 'PULSE Dark 3D',
+  name: 'ctOS Dark 3D',
   sources: {
     'dark-tiles': {
       type: 'raster',
-      tiles: [
-        'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}@2x.png',
-      ],
+      tiles: DARK_TILES,
       tileSize: 256,
-      attribution: '&copy; Stadia Maps &copy; OpenStreetMap',
+      attribution: '&copy; CARTO &copy; OpenStreetMap',
     },
     'openmaptiles': {
       type: 'vector',
@@ -82,7 +83,7 @@ export const DARK_STYLE_3D: StyleSpecification = {
       },
     },
   ],
-  glyphs: 'https://glfonts.lukasmartinelli.ch/fonts/{fontstack}/{range}.pbf',
+  glyphs: 'https://fonts.openmaptiles.org/{fontstack}/{range}.pbf',
 }
 
 export function add3DBuildingLayer(_map: MapLibreMap) {
