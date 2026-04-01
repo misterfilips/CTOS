@@ -13,7 +13,6 @@ import PermitLayer from './PermitLayer'
 import PotholeLayer from './PotholeLayer'
 import NewsMarkers from './NewsMarkers'
 import { formatDistanceToNow } from 'date-fns'
-import 'maplibre-gl/dist/maplibre-gl.css'
 
 // Chicago bounding box — tighter to keep focus on the city
 const CITY_BOUNDS: LngLatBoundsLike = [
