@@ -252,19 +252,20 @@ export default function CityMap() {
           anchor="bottom"
         >
           <div
-            className="p-3 rounded-lg min-w-[200px]"
+            className="rounded-lg min-w-[200px]"
             style={{
-              background: 'rgba(10,10,25,0.95)',
-              border: `1px solid ${getPopupColor(popup.layerId)}`,
-              boxShadow: `0 0 15px ${getPopupColor(popup.layerId)}40`,
-              fontFamily: 'Inter, sans-serif',
+              padding: 10,
+              background: darkMode ? 'rgba(10,10,10,0.95)' : 'rgba(255,255,255,0.95)',
+              border: `1px solid ${getPopupColor(popup.layerId)}44`,
+              backdropFilter: 'blur(8px)',
+              fontFamily: 'JetBrains Mono, monospace',
             }}
           >
             <div className="flex items-center justify-between mb-2">
               <span
-                className="text-[10px] font-mono px-2 py-0.5 rounded uppercase tracking-wider"
+                className="text-[10px] px-2 py-0.5 rounded uppercase tracking-wider"
                 style={{
-                  background: getPopupColor(popup.layerId) + '25',
+                  background: getPopupColor(popup.layerId) + '20',
                   color: getPopupColor(popup.layerId),
                 }}
               >
@@ -272,19 +273,20 @@ export default function CityMap() {
               </span>
               <button
                 onClick={(e) => { e.stopPropagation(); setPopup(null) }}
-                className="text-gray-500 hover:text-white text-sm ml-2"
+                className="text-sm ml-2"
+                style={{ color: darkMode ? '#666' : '#999' }}
               >
                 ✕
               </button>
             </div>
-            <div className="text-sm font-medium text-white mb-1">
+            <div className="text-sm font-medium mb-1" style={{ color: darkMode ? '#eee' : '#222' }}>
               {getPopupTitle(popup.layerId, popup.props)}
             </div>
             {getPopupDetails(popup.layerId, popup.props).map((d, i) => (
-              <div key={i} className="text-xs text-gray-400">{d}</div>
+              <div key={i} className="text-xs" style={{ color: darkMode ? '#999' : '#666' }}>{d}</div>
             ))}
             {popup.props.date && (
-              <div className="text-[10px] text-gray-600 mt-1 font-mono">
+              <div className="text-[10px] mt-1" style={{ color: darkMode ? '#555' : '#aaa' }}>
                 {formatDistanceToNow(new Date(popup.props.date), { addSuffix: true })}
               </div>
             )}
@@ -305,28 +307,30 @@ export default function CityMap() {
           <div
             className="rounded-lg"
             style={{
-              background: 'rgba(10,10,10,0.97)',
+              padding: 10,
+              background: darkMode ? 'rgba(10,10,10,0.97)' : 'rgba(255,255,255,0.97)',
               border: '1px solid rgba(102,136,170,0.3)',
               maxHeight: 320,
               width: 310,
               fontFamily: 'JetBrains Mono, monospace',
+              backdropFilter: 'blur(8px)',
             }}
           >
-            <div className="flex items-center justify-between px-3 py-2" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+            <div className="flex items-center justify-between pb-2 mb-1" style={{ borderBottom: `1px solid ${darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}` }}>
               <span className="text-[10px] tracking-[0.2em] uppercase" style={{ color: '#6688aa' }}>
                 311 Requests ({clusterList.items.length})
               </span>
-              <button onClick={() => setClusterList(null)} className="text-gray-600 hover:text-white text-sm">✕</button>
+              <button onClick={() => setClusterList(null)} className="text-sm" style={{ color: darkMode ? '#666' : '#999' }}>✕</button>
             </div>
-            <div className="overflow-y-auto" style={{ maxHeight: 270 }}>
+            <div className="overflow-y-auto" style={{ maxHeight: 250 }}>
               {clusterList.items.map((item, i) => (
                 <div
                   key={i}
-                  className="px-3 py-2"
-                  style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                  className="py-2"
+                  style={{ borderBottom: `1px solid ${darkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.04)'}` }}
                 >
-                  <div className="text-[11px] text-gray-300 truncate">{item.type || 'Unknown'}</div>
-                  <div className="text-[10px] text-gray-500 truncate">{item.address || ''}</div>
+                  <div className="text-[11px] truncate" style={{ color: darkMode ? '#ccc' : '#333' }}>{item.type || 'Unknown'}</div>
+                  <div className="text-[10px] truncate" style={{ color: darkMode ? '#777' : '#888' }}>{item.address || ''}</div>
                   <div className="flex items-center justify-between mt-0.5">
                     <span className="text-[9px]" style={{ color: item.status === 'Open' ? '#6688aa' : '#555' }}>
                       {item.status || ''}

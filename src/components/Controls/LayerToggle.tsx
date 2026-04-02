@@ -159,7 +159,7 @@ export default function LayerToggle() {
               <p className="text-xs mb-5" style={{ color: '#888', fontFamily: 'JetBrains Mono, monospace' }}>
                 Predictive analytics, live tracking, and sensitive data is only available for authorized personnel. If you are interested in bringing the ctOS system to your jurisdiction, contact us below.
               </p>
-              <form onSubmit={(e) => { e.preventDefault(); setShowModal(false) }} className="space-y-4">
+              <form onSubmit={(e) => { e.preventDefault(); setShowModal(false) }} className="space-y-5">
                 <div>
                   <label className="block text-[10px] uppercase tracking-[0.15em] mb-1.5" style={{ color: '#666', fontFamily: 'JetBrains Mono, monospace' }}>Full Name</label>
                   <input type="text" className="w-full rounded-none text-sm text-white outline-none focus:border-white transition-colors"
@@ -170,13 +170,19 @@ export default function LayerToggle() {
                   <label className="block text-[10px] uppercase tracking-[0.15em] mb-1.5" style={{ color: '#666', fontFamily: 'JetBrains Mono, monospace' }}>Email</label>
                   <input type="email" className="w-full rounded-none text-sm text-white outline-none focus:border-white transition-colors"
                     style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', fontFamily: 'JetBrains Mono, monospace' }}
-                    placeholder="john@agency.gov" />
+                    placeholder="john@organization.org" />
                 </div>
                 <div>
-                  <label className="block text-[10px] uppercase tracking-[0.15em] mb-1.5" style={{ color: '#666', fontFamily: 'JetBrains Mono, monospace' }}>Organization / Agency</label>
+                  <label className="block text-[10px] uppercase tracking-[0.15em] mb-1.5" style={{ color: '#666', fontFamily: 'JetBrains Mono, monospace' }}>Organization</label>
                   <input type="text" className="w-full rounded-none text-sm text-white outline-none focus:border-white transition-colors"
                     style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', fontFamily: 'JetBrains Mono, monospace' }}
-                    placeholder="CPD / CFD / OEMC" />
+                    placeholder="Your organization" />
+                </div>
+                <div>
+                  <label className="block text-[10px] uppercase tracking-[0.15em] mb-1.5" style={{ color: '#666', fontFamily: 'JetBrains Mono, monospace' }}>Message</label>
+                  <textarea rows={3} className="w-full rounded-none text-sm text-white outline-none focus:border-white transition-colors resize-none"
+                    style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', fontFamily: 'JetBrains Mono, monospace' }}
+                    placeholder="Tell us about your use case..." />
                 </div>
                 <button type="submit" className="w-full rounded-none text-xs font-bold uppercase tracking-[0.15em] transition-all hover:bg-white hover:text-black"
                   style={{ padding: '10px', background: 'rgba(255,255,255,0.1)', color: '#ffffff', border: '1px solid rgba(255,255,255,0.25)', fontFamily: 'JetBrains Mono, monospace' }}>

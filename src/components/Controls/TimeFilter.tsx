@@ -127,7 +127,7 @@ export default function TimeFilter() {
                   <p className="text-xs mb-5" style={{ color: '#888', fontFamily: 'JetBrains Mono, monospace' }}>
                     Predictive analytics, live tracking, and sensitive data is only available for authorized personnel. If you are interested in bringing the ctOS system to your jurisdiction, contact us below.
                   </p>
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
                       <label className="block text-[10px] uppercase tracking-[0.15em] mb-1.5" style={{ color: '#666', fontFamily: 'JetBrains Mono, monospace' }}>
                         Full Name
@@ -137,8 +137,9 @@ export default function TimeFilter() {
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-none text-sm text-white outline-none focus:border-white transition-colors"
+                        className="w-full rounded-none text-sm text-white outline-none focus:border-white transition-colors"
                         style={{
+                          padding: '10px 12px',
                           background: 'rgba(255,255,255,0.04)',
                           border: '1px solid rgba(255,255,255,0.1)',
                           fontFamily: 'JetBrains Mono, monospace',
@@ -155,31 +156,49 @@ export default function TimeFilter() {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-none text-sm text-white outline-none focus:border-white transition-colors"
+                        className="w-full rounded-none text-sm text-white outline-none focus:border-white transition-colors"
                         style={{
+                          padding: '10px 12px',
                           background: 'rgba(255,255,255,0.04)',
                           border: '1px solid rgba(255,255,255,0.1)',
                           fontFamily: 'JetBrains Mono, monospace',
                         }}
-                        placeholder="john@agency.gov"
+                        placeholder="john@organization.org"
                       />
                     </div>
                     <div>
                       <label className="block text-[10px] uppercase tracking-[0.15em] mb-1.5" style={{ color: '#666', fontFamily: 'JetBrains Mono, monospace' }}>
-                        Organization / Agency
+                        Organization
                       </label>
                       <input
                         type="text"
                         required
                         value={org}
                         onChange={(e) => setOrg(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-none text-sm text-white outline-none focus:border-white transition-colors"
+                        className="w-full rounded-none text-sm text-white outline-none focus:border-white transition-colors"
                         style={{
+                          padding: '10px 12px',
                           background: 'rgba(255,255,255,0.04)',
                           border: '1px solid rgba(255,255,255,0.1)',
                           fontFamily: 'JetBrains Mono, monospace',
                         }}
-                        placeholder="CPD / CFD / OEMC"
+                        placeholder="Your organization"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] uppercase tracking-[0.15em] mb-1.5" style={{ color: '#666', fontFamily: 'JetBrains Mono, monospace' }}>
+                        Message
+                      </label>
+                      <textarea
+                        rows={3}
+                        className="w-full rounded-none text-sm text-white outline-none focus:border-white transition-colors resize-none"
+                        style={{
+                          padding: '10px 12px',
+                          background: 'rgba(255,255,255,0.04)',
+                          border: '1px solid rgba(255,255,255,0.1)',
+                          fontFamily: 'JetBrains Mono, monospace',
+                        }}
+                        placeholder="Tell us about your use case..."
                       />
                     </div>
                     <div className="flex gap-2 pt-2">
