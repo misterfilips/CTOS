@@ -3,7 +3,7 @@ import Map, { Popup, type MapRef, type MapLayerMouseEvent } from 'react-map-gl/m
 import type { LngLatBoundsLike } from 'maplibre-gl'
 import type maplibregl from 'maplibre-gl'
 import { useDashboardStore } from '../../store/dashboardStore'
-import { DARK_STYLE, DARK_STYLE_3D, MAP_CINEMATIC_START, MAP_INITIAL_VIEW, add3DBuildingLayer } from '../../utils/mapStyles'
+import { DARK_STYLE, DARK_STYLE_3D, LIGHT_STYLE, MAP_CINEMATIC_START, MAP_INITIAL_VIEW, add3DBuildingLayer } from '../../utils/mapStyles'
 import CrimeLayer from './CrimeLayer'
 import ShootingLayer from './ShootingLayer'
 import ServiceLayer from './ServiceLayer'
@@ -104,7 +104,8 @@ export default function CityMap() {
   const [popup, setPopup] = useState<PopupData | null>(null)
   const [clusterList, setClusterList] = useState<{ lng: number; lat: number; items: Record<string, string>[] } | null>(null)
 
-  const mapStyle = buildings3d ? DARK_STYLE_3D : DARK_STYLE
+  const darkMode = useDashboardStore((s) => s.darkMode)
+  const mapStyle = !darkMode ? LIGHT_STYLE : buildings3d ? DARK_STYLE_3D : DARK_STYLE
 
   const onLoad = useCallback(() => {
     const map = mapRef.current?.getMap()

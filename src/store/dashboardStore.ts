@@ -30,6 +30,8 @@ interface DashboardState {
   addActivity: (items: ActivityItem[]) => void
   selectedCamera: { lng: number; lat: number; props: Record<string, string> } | null
   setSelectedCamera: (c: { lng: number; lat: number; props: Record<string, string> } | null) => void
+  darkMode: boolean
+  toggleDarkMode: () => void
 }
 
 export const useDashboardStore = create<DashboardState>((set) => ({
@@ -63,4 +65,6 @@ export const useDashboardStore = create<DashboardState>((set) => ({
     })),
   selectedCamera: null,
   setSelectedCamera: (c) => set({ selectedCamera: c }),
+  darkMode: true,
+  toggleDarkMode: () => set((s) => ({ darkMode: !s.darkMode })),
 }))

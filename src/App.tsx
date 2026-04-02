@@ -34,22 +34,55 @@ function LiveTickProvider() {
   return null
 }
 
+function DarkModeToggle() {
+  const darkMode = useDashboardStore((s) => s.darkMode)
+  const toggle = useDashboardStore((s) => s.toggleDarkMode)
+  return (
+    <button
+      onClick={toggle}
+      className="fixed bottom-4 left-4 z-50 w-9 h-9 flex items-center justify-center rounded-lg transition-all hover:scale-110"
+      style={{
+        background: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
+        border: `1px solid ${darkMode ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)'}`,
+        color: darkMode ? '#999' : '#555',
+        fontFamily: 'JetBrains Mono, monospace',
+        fontSize: 16,
+      }}
+      title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+    >
+      {darkMode ? '☀' : '☾'}
+    </button>
+  )
+}
+
+function AppShell() {
+  const darkMode = useDashboardStore((s) => s.darkMode)
+  return (
+    <div
+      className="relative w-full h-screen overflow-hidden"
+      style={{ background: darkMode ? '#0a0a0a' : '#f0f0f0' }}
+      data-theme={darkMode ? 'dark' : 'light'}
+    >
+      <CityMap />
+      <PulseHeader />
+      <ClockWidget />
+      <LayerToggle />
+      <TimeFilter />
+      <BoroughFilter />
+      <WeatherWidget />
+      <Sidebar />
+      <CameraModal />
+      <NewsTicker />
+      <DarkModeToggle />
+    </div>
+  )
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <LiveTickProvider />
-      <div className="relative w-full h-screen overflow-hidden" style={{ background: '#0a0a0f' }}>
-        <CityMap />
-        <PulseHeader />
-        <ClockWidget />
-        <LayerToggle />
-        <TimeFilter />
-        <BoroughFilter />
-        <WeatherWidget />
-        <Sidebar />
-        <CameraModal />
-        <NewsTicker />
-      </div>
+      <AppShell />
     </QueryClientProvider>
   )
 }
