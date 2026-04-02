@@ -57,7 +57,7 @@ function LockIcon() {
   )
 }
 
-export default function LayerToggle() {
+export default function LayerToggle({ inline }: { inline?: boolean }) {
   const layers = useDashboardStore((s) => s.layers)
   const toggle = useDashboardStore((s) => s.toggleLayer)
   const [showModal, setShowModal] = useState(false)
@@ -70,7 +70,7 @@ export default function LayerToggle() {
 
   return (
     <>
-      <GlowCard className="fixed top-16 left-4 z-40 w-52 overflow-y-auto custom-scrollbar" style={{ padding: 15, maxHeight: 'calc(100vh - 100px)' }}>
+      <GlowCard className={`${inline ? 'w-full' : 'fixed top-16 left-4 z-40 w-52'} overflow-y-auto custom-scrollbar`} style={{ padding: 15, maxHeight: inline ? 'none' : 'calc(100vh - 100px)' }}>
 
         {/* Open Data */}
         <div

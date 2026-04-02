@@ -3,12 +3,40 @@ import { formatDistanceToNow } from 'date-fns'
 import { useNewsData } from '../../hooks/useNewsData'
 import { useDashboardStore } from '../../store/dashboardStore'
 
-export default function NewsTicker() {
+export default function NewsTicker({ inline }: { inline?: boolean }) {
   const { data: articles } = useNewsData()
   const visible = useDashboardStore((s) => s.layers.news)
   const [expanded, setExpanded] = useState(false)
 
+  const dark = useDashboardStore((s) => s.darkMode)
+
   if (!visible || !articles?.length) return null
+
+  if (inline) {
+    return (
+      <div>
+        <div className="text-[10px] tracking-[0.25em] uppercase mb-3 pb-2" style={{ color: dark ? '#555' : '#999', fontFamily: 'JetBrains Mono, monospace', borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}` }}>
+          News Feed
+        </div>
+        <div className="space-y-2">
+          {articles.slice(0, 6).map((a, i) => (
+            <a key={i} href={a.url} target="_blank" rel="noopener noreferrer"
+              className="block rounded-lg transition-all"
+              style={{ padding: 10, background: dark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)', border: `1px solid ${dark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.04)'}` }}
+            >
+              <div className="text-[10px] uppercase tracking-wider mb-1" style={{ color: '#8888aa', fontFamily: 'JetBrains Mono, monospace' }}>{a.source.name}</div>
+              <div className="text-xs leading-snug" style={{ color: dark ? '#ccc' : '#333', fontFamily: 'JetBrains Mono, monospace' }}>{a.title}</div>
+              {a.publishedAt && (
+                <div className="text-[10px] mt-1" style={{ color: dark ? '#555' : '#aaa', fontFamily: 'JetBrains Mono, monospace' }}>
+                  {formatDistanceToNow(new Date(a.publishedAt), { addSuffix: true })}
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>

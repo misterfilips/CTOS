@@ -14,7 +14,7 @@ const LOCKED_RANGES = [
   { label: 'Live', hours: 1 },
 ]
 
-export default function TimeFilter() {
+export default function TimeFilter({ inline }: { inline?: boolean }) {
   const timeRange = useDashboardStore((s) => s.timeRangeHours)
   const setTimeRange = useDashboardStore((s) => s.setTimeRangeHours)
   const [showModal, setShowModal] = useState(false)
@@ -37,7 +37,7 @@ export default function TimeFilter() {
 
   return (
     <>
-      <GlowCard className="fixed top-16 left-56 z-40 flex gap-1 items-center" style={{ padding: '10px 15px' }}>
+      <GlowCard className={`${inline ? '' : 'fixed top-16 left-56 z-40'} flex gap-1 items-center flex-wrap`} style={{ padding: '10px 15px' }}>
         {/* Locked group */}
         <div
           className="flex gap-0.5 items-center px-1.5 py-0.5 rounded-md cursor-pointer"

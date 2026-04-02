@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import CityMap from './components/Map/CityMap'
 import PulseHeader from './components/Overlay/PulseHeader'
@@ -30,7 +30,6 @@ function LiveTickProvider() {
     const id = setInterval(tick, 30_000)
     return () => clearInterval(id)
   }, [timeRange, tick])
-
   return null
 }
 
@@ -55,28 +54,8 @@ function DarkModeToggle() {
   )
 }
 
-function MobileMenuToggle({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
-  const dark = useDashboardStore((s) => s.darkMode)
-  return (
-    <button
-      onClick={() => setOpen(!open)}
-      className="fixed top-3 left-4 z-[60] w-9 h-9 flex items-center justify-center rounded-lg transition-all md:hidden"
-      style={{
-        background: dark ? 'rgba(10,10,10,0.9)' : 'rgba(255,255,255,0.9)',
-        border: `1px solid ${dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
-        color: dark ? '#ccc' : '#333',
-        fontFamily: 'JetBrains Mono, monospace',
-        fontSize: 14,
-      }}
-    >
-      {open ? '✕' : '☰'}
-    </button>
-  )
-}
-
 function AppShell() {
   const darkMode = useDashboardStore((s) => s.darkMode)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <div
@@ -85,29 +64,29 @@ function AppShell() {
       data-theme={darkMode ? 'dark' : 'light'}
     >
       <CityMap />
-      <PulseHeader />
-      <ClockWidget />
 
-      {/* Desktop: always visible. Mobile: toggle with hamburger */}
-      <div className={`hidden md:block`}>
+      {/* Desktop header + clock — hidden on mobile (moved to sidebar) */}
+      <div className="hidden md:block">
+        <PulseHeader />
+        <ClockWidget />
+      </div>
+
+      {/* Desktop floating controls — hidden on mobile (moved to sidebar) */}
+      <div className="hidden md:block">
         <LayerToggle />
         <TimeFilter />
         <BoroughFilter />
         <WeatherWidget />
       </div>
-      {mobileMenuOpen && (
-        <div className="block md:hidden">
-          <LayerToggle />
-          <TimeFilter />
-          <BoroughFilter />
-          <WeatherWidget />
-        </div>
-      )}
-      <MobileMenuToggle open={mobileMenuOpen} setOpen={setMobileMenuOpen} />
 
+      {/* Desktop news ticker at bottom — hidden on mobile (moved to sidebar) */}
+      <div className="hidden md:block">
+        <NewsTicker />
+      </div>
+
+      {/* Sidebar: on desktop it's the right panel. On mobile it's EVERYTHING. */}
       <Sidebar />
       <CameraModal />
-      <NewsTicker />
       <DarkModeToggle />
     </div>
   )
